@@ -1,0 +1,669 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #1a1a1a;
+    --bg-tertiary: #2a2a2a;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --accent: #00a8e1;
+    --netflix: #e50914;
+    --prime: #00a8e1;
+    --disney: #113ccf;
+    --peacock: #000000;
+    --button-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    --card-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    height: 100vh;
+    overflow: hidden;
+    user-select: none;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 500px;
+    margin: 0 auto;
+    background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+}
+
+.tab-nav {
+    display: flex;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid #333;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 16px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+.tab-btn.active {
+    color: var(--accent);
+    background: rgba(0, 168, 225, 0.1);
+}
+
+.tab-content {
+    display: none;
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.remote-body {
+    background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    border-radius: 24px;
+    margin: 12px;
+    padding: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+    border: 1px solid #333;
+}
+
+.remote-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.power-row {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 20px;
+}
+
+.power-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #e50914, #b00610);
+    border: 2px solid #900510;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: var(--button-shadow);
+}
+
+.power-btn:active,
+.power-btn.touch-down,
+.power-btn.pressed {
+    transform: scale(0.92);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 2px 4px rgba(0,0,0,0.3);
+    background: linear-gradient(145deg, #b00610, #900510);
+}
+
+.power-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: white;
+}
+
+.nav-section {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-pad {
+    display: grid;
+    grid-template-areas:
+        ". up ."
+        "left ok right"
+        ". down .";
+    gap: 6px;
+    justify-content: center;
+}
+
+.nav-btn {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    border: 2px solid #444;
+    color: var(--text-primary);
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: var(--button-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-btn.up { grid-area: up; }
+.nav-btn.down { grid-area: down; }
+.nav-btn.left { grid-area: left; }
+.nav-btn.right { grid-area: right; }
+.nav-btn.ok { 
+    grid-area: ok;
+    background: var(--accent);
+    border-color: var(--accent);
+    font-size: 16px;
+    width: 75px;
+    height: 75px;
+}
+
+.nav-btn svg {
+    width: 26px;
+    height: 26px;
+    fill: currentColor;
+}
+
+.nav-btn:active,
+.nav-btn.touch-down,
+.nav-btn.pressed {
+    transform: scale(0.92);
+    background: var(--accent);
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.4), 0 2px 4px rgba(0,168,225,0.3);
+    border-color: #00d4ff;
+}
+
+.nav-btn.ok:active,
+.nav-btn.ok.touch-down,
+.nav-btn.ok.pressed {
+    background: #0080b3;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.4), 0 2px 4px rgba(0,168,225,0.5);
+}
+
+.side-controls {
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.volume-side {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.side-btn {
+    width: 50px;
+    height: 35px;
+    background: var(--bg-tertiary);
+    border: 1px solid #444;
+    border-radius: 0 12px 12px 0;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.side-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+.side-btn:active,
+.side-btn.touch-down,
+.side-btn.pressed {
+    background: var(--accent);
+    transform: scale(0.92) translateX(-2px);
+    box-shadow: inset -2px 0 6px rgba(0,0,0,0.3), 2px 0 8px rgba(0,168,225,0.2);
+    border-color: #00d4ff;
+}
+
+.mute-side {
+    padding: 8px 4px;
+}
+
+.control-row {
+    display: flex;
+    justify-content: space-around;
+    padding: 0 30px;
+}
+
+.remote-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 12px 20px;
+    background: var(--bg-tertiary);
+    border: 1px solid #444;
+    border-radius: 20px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: var(--button-shadow);
+}
+
+.remote-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.remote-btn span {
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.remote-btn:active,
+.remote-btn.touch-down,
+.remote-btn.pressed {
+    transform: scale(0.92);
+    background: var(--accent);
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.3), 0 2px 8px rgba(0,168,225,0.2);
+    border-color: #00d4ff;
+}
+
+.bottom-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.channel-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.bottom-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    border: 1px solid #444;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: var(--button-shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+}
+
+.bottom-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+.bottom-btn span {
+    font-size: 9px;
+    font-weight: bold;
+}
+
+.bottom-btn:active,
+.bottom-btn.touch-down,
+.bottom-btn.pressed {
+    background: var(--accent);
+    transform: scale(0.92);
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.3), 0 2px 8px rgba(0,168,225,0.2);
+    border-color: #00d4ff;
+}
+
+.ch-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60px;
+}
+
+.ch-number {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--accent);
+}
+
+.ch-label {
+    font-size: 9px;
+    color: var(--text-secondary);
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.menu-controls {
+    display: flex;
+    gap: 12px;
+}
+
+.menu-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 12px;
+    background: var(--bg-tertiary);
+    border: 1px solid #444;
+    border-radius: 12px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: var(--button-shadow);
+}
+
+.menu-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+.menu-btn span {
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.menu-btn:active,
+.menu-btn.touch-down,
+.menu-btn.pressed {
+    background: var(--accent);
+    transform: scale(0.92);
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.3), 0 2px 8px rgba(0,168,225,0.2);
+    border-color: #00d4ff;
+}
+
+.play-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.sub-nav {
+    display: flex;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid #333;
+    padding: 0 8px;
+}
+
+.sub-tab-btn {
+    flex: 1;
+    padding: 12px 8px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 8px 8px 0 0;
+}
+
+.sub-tab-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+.sub-tab-btn.active {
+    color: var(--accent);
+    background: rgba(0, 168, 225, 0.1);
+    border-bottom: 2px solid var(--accent);
+}
+
+.sub-content {
+    display: none;
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 20px;
+}
+
+.sub-content.active {
+    display: block;
+}
+
+.favorites-list, .channel-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.content-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: var(--card-shadow);
+    border: 1px solid transparent;
+}
+
+.content-card:active,
+.content-card.selected {
+    transform: scale(0.96);
+    background: var(--bg-tertiary);
+    border-color: var(--accent);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4), inset 0 0 20px rgba(0,168,225,0.1);
+}
+
+.card-icon {
+    font-size: 24px;
+}
+
+.channel-card {
+    padding: 12px 16px;
+}
+
+.channel-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.channel-name {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.channel-desc {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.channel-number {
+    font-weight: bold;
+    color: var(--accent);
+    font-size: 14px;
+    min-width: 40px;
+    text-align: right;
+}
+
+.channel-logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 12px;
+    color: white;
+    border: 1px solid #444;
+}
+
+.abc-logo { background: linear-gradient(45deg, #000, #333); color: #FFD700; }
+.cbs-logo { background: linear-gradient(45deg, #003f7f, #0066cc); }
+.nbc-logo { background: linear-gradient(45deg, #000, #333); color: #FFD700; }
+.fox-logo { background: linear-gradient(45deg, #003366, #0066cc); }
+.cnn-logo { background: linear-gradient(45deg, #cc0000, #ff0000); }
+.espn-logo { background: linear-gradient(45deg, #ffcc00, #ff9900); color: #000; }
+.espn2-logo { background: linear-gradient(45deg, #ff6600, #ff3300); }
+.fs1-logo { background: linear-gradient(45deg, #000033, #000066); }
+.msnbc-logo { background: linear-gradient(45deg, #0066cc, #0080ff); }
+.cc-logo { background: linear-gradient(45deg, #ffcc00, #ff9900); color: #000; }
+.disc-logo { background: linear-gradient(45deg, #003366, #0066cc); }
+.hist-logo { background: linear-gradient(45deg, #996600, #cc8800); }
+.natgeo-logo { background: linear-gradient(45deg, #ffcc00, #ff9900); color: #000; }
+.food-logo { background: linear-gradient(45deg, #cc6600, #ff8800); }
+.hgtv-logo { background: linear-gradient(45deg, #006633, #009944); }
+.tnt-logo { background: linear-gradient(45deg, #000, #333); color: #FFD700; }
+.tbs-logo { background: linear-gradient(45deg, #003366, #0066cc); }
+.usa-logo { background: linear-gradient(45deg, #000066, #0033cc); }
+.fx-logo { background: linear-gradient(45deg, #000, #333); color: #FFD700; }
+.syfy-logo { background: linear-gradient(45deg, #6600cc, #9933ff); }
+.weather-logo { background: linear-gradient(45deg, #0066cc, #0080ff); }
+.mtv-logo { background: linear-gradient(45deg, #ffcc00, #ff9900); color: #000; }
+.vh1-logo { background: linear-gradient(45deg, #ff6600, #ff3300); }
+.bravo-logo { background: linear-gradient(45deg, #660066, #990099); }
+.ae-logo { background: linear-gradient(45deg, #000, #333); color: #FFD700; }
+
+.apps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 16px;
+}
+
+.app-card {
+    flex-direction: column;
+    padding: 16px;
+    gap: 8px;
+    text-align: center;
+}
+
+.app-card span {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.app-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+}
+
+.netflix-icon { background: var(--netflix); }
+.prime-icon { background: var(--prime); }
+.disney-icon { background: var(--disney); }
+.hulu-icon { background: #3dbb3d; }
+.hbo-icon { 
+    background: linear-gradient(135deg, #7c3aed, #a855f7); 
+    font-size: 16px;
+}
+.youtube-icon { background: #ff0000; }
+.peacock-icon { 
+    background: linear-gradient(45deg, #000, #333);
+    border: 1px solid #444;
+}
+.paramount-icon { background: #0064ff; }
+.apple-icon { 
+    background: linear-gradient(135deg, #000, #333);
+    font-size: 28px;
+}
+.spotify-icon { 
+    background: #1db954;
+    font-size: 28px;
+}
+.twitch-icon { background: #9146ff; }
+.plex-icon { background: #e5a00d; color: #000; }
+
+/* Enhanced button touch feedback */
+.nav-btn, .power-btn, .side-btn, .remote-btn, .bottom-btn, .menu-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-btn::before, .power-btn::before, .side-btn::before, 
+.remote-btn::before, .bottom-btn::before, .menu-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    z-index: 1;
+}
+
+.nav-btn.pressed::before, .power-btn.pressed::before, .side-btn.pressed::before,
+.remote-btn.pressed::before, .bottom-btn.pressed::before, .menu-btn.pressed::before {
+    width: 100px;
+    height: 100px;
+    opacity: 1;
+}
+
+/* Button glow on touch */
+.nav-btn.touch-down, .power-btn.touch-down, .side-btn.touch-down,
+.remote-btn.touch-down, .bottom-btn.touch-down, .menu-btn.touch-down {
+    box-shadow: 
+        var(--button-shadow),
+        0 0 20px rgba(0, 168, 225, 0.4),
+        inset 0 2px 8px rgba(0,0,0,0.3);
+}
+
+@media (min-width: 768px) {
+    .app {
+        border-left: 1px solid #333;
+        border-right: 1px solid #333;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+}
