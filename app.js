@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     const tabButtons = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
+    const subTabButtons = document.querySelectorAll('.sub-tab-btn');
+    const subContents = document.querySelectorAll('.sub-content');
     const toast = document.getElementById('toast');
     let toastTimeout;
 
@@ -13,6 +15,20 @@ document.addEventListener('DOMContentLoaded', () => {
             
             button.classList.add('active');
             document.getElementById(targetTab).classList.add('active');
+            
+            navigator.vibrate && navigator.vibrate(10);
+        });
+    });
+    
+    subTabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetSubTab = button.dataset.subtab;
+            
+            subTabButtons.forEach(btn => btn.classList.remove('active'));
+            subContents.forEach(content => content.classList.remove('active'));
+            
+            button.classList.add('active');
+            document.getElementById(targetSubTab).classList.add('active');
             
             navigator.vibrate && navigator.vibrate(10);
         });
@@ -33,10 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const messages = {
             'power': 'Power button pressed',
-            'netflix': 'Opening Netflix',
-            'prime': 'Opening Prime Video',
-            'disney': 'Opening Disney+',
-            'peacock': 'Opening Peacock',
             'up': 'Navigate Up',
             'down': 'Navigate Down',
             'left': 'Navigate Left',
@@ -48,7 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
             'vol-down': 'Volume Down',
             'mute': 'Mute Toggle',
             'ch-up': 'Channel Up',
-            'ch-down': 'Channel Down'
+            'ch-down': 'Channel Down',
+            'menu': 'Menu opened',
+            'guide': 'Guide opened'
         };
         
         showToast(messages[action] || `${action} pressed`);

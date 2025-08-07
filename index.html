@@ -18,13 +18,14 @@
                 <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14.5c-2.49 0-4.5-2.01-4.5-4.5S9.51 7.5 12 7.5s4.5 2.01 4.5 4.5-2.01 4.5-4.5 4.5zm0-5.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"/></svg>
                 Remote
             </button>
-            <button class="tab-btn" data-tab="content">
-                <svg viewBox="0 0 24 24"><path d="M4 6h16v2H4zm2 5h12v2H6zm-2 5h16v2H4z"/></svg>
-                Content
+            <button class="tab-btn" data-tab="play">
+                <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                Play
             </button>
         </nav>
 
         <div class="tab-content active" id="remote">
+            <div class="remote-body">
             <div class="remote-container">
                 <div class="power-row">
                     <button class="remote-btn power-btn" data-action="power">
@@ -32,12 +33,6 @@
                     </button>
                 </div>
 
-                <div class="streaming-services">
-                    <button class="service-btn netflix" data-action="netflix">NETFLIX</button>
-                    <button class="service-btn prime" data-action="prime">prime</button>
-                    <button class="service-btn disney" data-action="disney">Disney+</button>
-                    <button class="service-btn peacock" data-action="peacock">peacock</button>
-                </div>
 
                 <div class="nav-pad">
                     <button class="nav-btn up" data-action="up">
@@ -83,21 +78,35 @@
             </div>
         </div>
 
-        <div class="tab-content" id="content">
-            <div class="content-container">
-                <section class="content-section">
-                    <h2>Favorites</h2>
+        <div class="tab-content" id="play">
+            <div class="play-container">
+                <nav class="sub-nav">
+                    <button class="sub-tab-btn active" data-subtab="favorites">
+                        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                        Favorites
+                    </button>
+                    <button class="sub-tab-btn" data-subtab="live">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M13 1v6l3-3-3-3zM21 12a9 9 0 01-9 9v-2a7 7 0 007-7h2zM1 12a11 11 0 0011 11v-2a9 9 0 01-9-9H1z"/></svg>
+                        Live
+                    </button>
+                    <button class="sub-tab-btn" data-subtab="apps">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                        Apps
+                    </button>
+                </nav>
+                
+                <div class="sub-content active" id="favorites">
                     <div class="favorites-list">
                         <div class="content-card" data-item="The Office">
                             <div class="card-icon">📺</div>
                             <span>The Office</span>
                         </div>
-                        <div class="content-card" data-item="Netflix App">
-                            <div class="card-icon">🎬</div>
+                        <div class="content-card" data-item="Netflix">
+                            <div class="app-icon netflix-icon">N</div>
                             <span>Netflix</span>
                         </div>
                         <div class="content-card" data-item="CNN Live">
-                            <div class="card-icon">📡</div>
+                            <div class="channel-logo">CNN</div>
                             <span>CNN Live</span>
                         </div>
                         <div class="content-card" data-item="Breaking Bad">
@@ -105,56 +114,232 @@
                             <span>Breaking Bad</span>
                         </div>
                         <div class="content-card" data-item="HBO Max">
-                            <div class="card-icon">🎬</div>
+                            <div class="app-icon hbo-icon">HBO</div>
                             <span>HBO Max</span>
                         </div>
                         <div class="content-card" data-item="ESPN">
-                            <div class="card-icon">📡</div>
+                            <div class="channel-logo">ESPN</div>
                             <span>ESPN</span>
                         </div>
+                        <div class="content-card" data-item="Stranger Things">
+                            <div class="card-icon">📺</div>
+                            <span>Stranger Things</span>
+                        </div>
+                        <div class="content-card" data-item="Disney+">
+                            <div class="app-icon disney-icon">D+</div>
+                            <span>Disney+</span>
+                        </div>
                     </div>
-                </section>
+                </div>
+                
+                <div class="sub-content" id="live">
 
-                <section class="content-section">
-                    <h2>Live Channels</h2>
                     <div class="channel-list">
                         <div class="content-card channel-card" data-item="ABC">
-                            <div class="channel-logo">ABC</div>
-                            <span>ABC News Live</span>
+                            <div class="channel-logo abc-logo">ABC</div>
+                            <div class="channel-info">
+                                <span class="channel-name">ABC</span>
+                                <span class="channel-desc">Local News & Entertainment</span>
+                            </div>
+                            <span class="channel-number">7.1</span>
                         </div>
                         <div class="content-card channel-card" data-item="CBS">
-                            <div class="channel-logo">CBS</div>
-                            <span>CBS News</span>
+                            <div class="channel-logo cbs-logo">CBS</div>
+                            <div class="channel-info">
+                                <span class="channel-name">CBS</span>
+                                <span class="channel-desc">News & Prime Time Shows</span>
+                            </div>
+                            <span class="channel-number">2.1</span>
                         </div>
                         <div class="content-card channel-card" data-item="NBC">
-                            <div class="channel-logo">NBC</div>
-                            <span>NBC News Now</span>
+                            <div class="channel-logo nbc-logo">NBC</div>
+                            <div class="channel-info">
+                                <span class="channel-name">NBC</span>
+                                <span class="channel-desc">Today Show & Sports</span>
+                            </div>
+                            <span class="channel-number">4.1</span>
                         </div>
                         <div class="content-card channel-card" data-item="FOX">
-                            <div class="channel-logo">FOX</div>
-                            <span>FOX News</span>
+                            <div class="channel-logo fox-logo">FOX</div>
+                            <div class="channel-info">
+                                <span class="channel-name">FOX</span>
+                                <span class="channel-desc">Sports & Entertainment</span>
+                            </div>
+                            <span class="channel-number">5.1</span>
                         </div>
                         <div class="content-card channel-card" data-item="CNN">
-                            <div class="channel-logo">CNN</div>
-                            <span>CNN International</span>
+                            <div class="channel-logo cnn-logo">CNN</div>
+                            <div class="channel-info">
+                                <span class="channel-name">CNN</span>
+                                <span class="channel-desc">Breaking News & Politics</span>
+                            </div>
+                            <span class="channel-number">202</span>
                         </div>
                         <div class="content-card channel-card" data-item="ESPN">
-                            <div class="channel-logo">ESPN</div>
-                            <span>ESPN Live</span>
+                            <div class="channel-logo espn-logo">ESPN</div>
+                            <div class="channel-info">
+                                <span class="channel-name">ESPN</span>
+                                <span class="channel-desc">Live Sports Coverage</span>
+                            </div>
+                            <span class="channel-number">206</span>
                         </div>
-                        <div class="content-card channel-card" data-item="Comedy">
-                            <div class="channel-logo">CC</div>
-                            <span>Comedy Central</span>
+                        <div class="content-card channel-card" data-item="ESPN2">
+                            <div class="channel-logo espn2-logo">ES2</div>
+                            <div class="channel-info">
+                                <span class="channel-name">ESPN2</span>
+                                <span class="channel-desc">Alternative Sports</span>
+                            </div>
+                            <span class="channel-number">209</span>
                         </div>
-                        <div class="content-card channel-card" data-item="Weather">
-                            <div class="channel-logo">WX</div>
-                            <span>Weather Channel</span>
+                        <div class="content-card channel-card" data-item="FOX Sports">
+                            <div class="channel-logo fs1-logo">FS1</div>
+                            <div class="channel-info">
+                                <span class="channel-name">FOX Sports 1</span>
+                                <span class="channel-desc">Live Sports & Analysis</span>
+                            </div>
+                            <span class="channel-number">219</span>
+                        </div>
+                        <div class="content-card channel-card" data-item="MSNBC">
+                            <div class="channel-logo msnbc-logo">MSNBC</div>
+                            <div class="channel-info">
+                                <span class="channel-name">MSNBC</span>
+                                <span class="channel-desc">News & Commentary</span>
+                            </div>
+                            <span class="channel-number">356</span>
+                        </div>
+                        <div class="content-card channel-card" data-item="Comedy Central">
+                            <div class="channel-logo cc-logo">CC</div>
+                            <div class="channel-info">
+                                <span class="channel-name">Comedy Central</span>
+                                <span class="channel-desc">Comedy Shows & Stand-up</span>
+                            </div>
+                            <span class="channel-number">249</span>
+                        </div>
+                        <div class="content-card channel-card" data-item="Discovery">
+                            <div class="channel-logo disc-logo">DISC</div>
+                            <div class="channel-info">
+                                <span class="channel-name">Discovery</span>
+                                <span class="channel-desc">Nature & Science</span>
+                            </div>
+                            <span class="channel-number">278</span>
+                        </div>
+                        <div class="content-card channel-card" data-item="History">
+                            <div class="channel-logo hist-logo">HIST</div>
+                            <div class="channel-info">
+                                <span class="channel-name">History Channel</span>
+                                <span class="channel-desc">Historical Documentaries</span>
+                            </div>
+                            <span class="channel-number">269</span>
+                        </div>
+                        <div class="content-card channel-card" data-item="National Geographic">
+                            <div class="channel-logo natgeo-logo">NAT</div>
+                            <div class="channel-info">
+                                <span class="channel-name">Nat Geo</span>
+                                <span class="channel-desc">Wildlife & Exploration</span>
+                            </div>
+                            <span class="channel-number">276</span>
+                        </div>
+                        <div class="content-card channel-card" data-item="Food Network">
+                            <div class="channel-logo food-logo">FOOD</div>
+                            <div class="channel-info">
+                                <span class="channel-name">Food Network</span>
+                                <span class="channel-desc">Cooking & Recipes</span>
+                            </div>
+                            <span class="channel-number">231</span>
+                        </div>
+                        <div class="content-card channel-card" data-item="HGTV">
+                            <div class="channel-logo hgtv-logo">HGTV</div>
+                            <div class="channel-info">
+                                <span class="channel-name">HGTV</span>
+                                <span class="channel-desc">Home & Garden</span>
+                            </div>
+                            <span class="channel-number">229</span>
+                        </div>
+                        <div class="content-card channel-card" data-item="TNT">
+                            <div class="channel-logo tnt-logo">TNT</div>
+                            <div class="channel-info">
+                                <span class="channel-name">TNT</span>
+                                <span class="channel-desc">Drama Series & Movies</span>
+                            </div>
+                            <span class="channel-number">245</span>
+                        </div>
+                        <div class="content-card channel-card" data-item="TBS">
+                            <div class="channel-logo tbs-logo">TBS</div>
+                            <div class="channel-info">
+                                <span class="channel-name">TBS</span>
+                                <span class="channel-desc">Comedy & Sports</span>
+                            </div>
+                            <span class="channel-number">247</span>
+                        </div>
+                        <div class="content-card channel-card" data-item="USA">
+                            <div class="channel-logo usa-logo">USA</div>
+                            <div class="channel-info">
+                                <span class="channel-name">USA Network</span>
+                                <span class="channel-desc">Original Series</span>
+                            </div>
+                            <span class="channel-number">242</span>
+                        </div>
+                        <div class="content-card channel-card" data-item="FX">
+                            <div class="channel-logo fx-logo">FX</div>
+                            <div class="channel-info">
+                                <span class="channel-name">FX</span>
+                                <span class="channel-desc">Original Dramas</span>
+                            </div>
+                            <span class="channel-number">248</span>
+                        </div>
+                        <div class="content-card channel-card" data-item="Syfy">
+                            <div class="channel-logo syfy-logo">SYFY</div>
+                            <div class="channel-info">
+                                <span class="channel-name">Syfy</span>
+                                <span class="channel-desc">Sci-Fi & Fantasy</span>
+                            </div>
+                            <span class="channel-number">244</span>
+                        </div>
+                        <div class="content-card channel-card" data-item="Weather Channel">
+                            <div class="channel-logo weather-logo">WX</div>
+                            <div class="channel-info">
+                                <span class="channel-name">Weather Channel</span>
+                                <span class="channel-desc">Local & National Weather</span>
+                            </div>
+                            <span class="channel-number">362</span>
+                        </div>
+                        <div class="content-card channel-card" data-item="MTV">
+                            <div class="channel-logo mtv-logo">MTV</div>
+                            <div class="channel-info">
+                                <span class="channel-name">MTV</span>
+                                <span class="channel-desc">Music & Reality TV</span>
+                            </div>
+                            <span class="channel-number">331</span>
+                        </div>
+                        <div class="content-card channel-card" data-item="VH1">
+                            <div class="channel-logo vh1-logo">VH1</div>
+                            <div class="channel-info">
+                                <span class="channel-name">VH1</span>
+                                <span class="channel-desc">Music & Pop Culture</span>
+                            </div>
+                            <span class="channel-number">335</span>
+                        </div>
+                        <div class="content-card channel-card" data-item="Bravo">
+                            <div class="channel-logo bravo-logo">BRAVO</div>
+                            <div class="channel-info">
+                                <span class="channel-name">Bravo</span>
+                                <span class="channel-desc">Reality & Lifestyle</span>
+                            </div>
+                            <span class="channel-number">237</span>
+                        </div>
+                        <div class="content-card channel-card" data-item="A&E">
+                            <div class="channel-logo ae-logo">A&E</div>
+                            <div class="channel-info">
+                                <span class="channel-name">A&E</span>
+                                <span class="channel-desc">True Crime & Reality</span>
+                            </div>
+                            <span class="channel-number">265</span>
                         </div>
                     </div>
-                </section>
+                </div>
+                
+                <div class="sub-content" id="apps">
 
-                <section class="content-section">
-                    <h2>Apps</h2>
                     <div class="apps-grid">
                         <div class="content-card app-card" data-item="Netflix">
                             <div class="app-icon netflix-icon">N</div>
@@ -188,8 +373,25 @@
                             <div class="app-icon paramount-icon">P+</div>
                             <span>Paramount+</span>
                         </div>
+                        <div class="content-card app-card" data-item="Apple TV+">
+                            <div class="app-icon apple-icon">🍎</div>
+                            <span>Apple TV+</span>
+                        </div>
+                        <div class="content-card app-card" data-item="Spotify">
+                            <div class="app-icon spotify-icon">♪</div>
+                            <span>Spotify</span>
+                        </div>
+                        <div class="content-card app-card" data-item="Twitch">
+                            <div class="app-icon twitch-icon">T</div>
+                            <span>Twitch</span>
+                        </div>
+                        <div class="content-card app-card" data-item="Plex">
+                            <div class="app-icon plex-icon">P</div>
+                            <span>Plex</span>
+                        </div>
                     </div>
-                </section>
+                </div>
+            </div>
             </div>
         </div>
 

@@ -85,11 +85,20 @@ body {
     display: block;
 }
 
+.remote-body {
+    background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    border-radius: 24px;
+    margin: 12px;
+    padding: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+    border: 1px solid #333;
+}
+
 .remote-container {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 20px;
     max-width: 400px;
     margin: 0 auto;
 }
@@ -101,8 +110,8 @@ body {
 }
 
 .power-btn {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     background: linear-gradient(145deg, #e50914, #b00610);
     border: 2px solid #900510;
@@ -121,52 +130,16 @@ body {
 }
 
 .power-btn svg {
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     fill: white;
 }
 
-.streaming-services {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    padding: 0 20px;
-}
-
-.service-btn {
-    padding: 12px;
-    border-radius: 8px;
-    border: none;
-    font-weight: bold;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: var(--button-shadow);
-}
-
-.service-btn.netflix {
-    background: var(--netflix);
-    color: white;
-}
-
-.service-btn.prime {
-    background: var(--prime);
-    color: white;
-}
-
-.service-btn.disney {
-    background: var(--disney);
-    color: white;
-}
-
-.service-btn.peacock {
-    background: linear-gradient(45deg, #000, #333);
-    color: white;
-    border: 1px solid #444;
-}
-
-.service-btn:active {
-    transform: scale(0.95);
+.nav-section {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .nav-pad {
@@ -175,14 +148,13 @@ body {
         ". up ."
         "left ok right"
         ". down .";
-    gap: 8px;
-    padding: 0 40px;
+    gap: 6px;
     justify-content: center;
 }
 
 .nav-btn {
-    width: 70px;
-    height: 70px;
+    width: 65px;
+    height: 65px;
     border-radius: 50%;
     background: var(--bg-tertiary);
     border: 2px solid #444;
@@ -204,12 +176,14 @@ body {
     grid-area: ok;
     background: var(--accent);
     border-color: var(--accent);
-    font-size: 18px;
+    font-size: 16px;
+    width: 75px;
+    height: 75px;
 }
 
 .nav-btn svg {
-    width: 30px;
-    height: 30px;
+    width: 26px;
+    height: 26px;
     fill: currentColor;
 }
 
@@ -218,10 +192,56 @@ body {
     background: var(--accent);
 }
 
+.side-controls {
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.volume-side {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.side-btn {
+    width: 50px;
+    height: 35px;
+    background: var(--bg-tertiary);
+    border: 1px solid #444;
+    border-radius: 0 12px 12px 0;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.side-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+.side-btn:active {
+    background: var(--accent);
+    transform: scale(0.95);
+}
+
+.mute-side {
+    padding: 8px 4px;
+}
+
 .control-row {
     display: flex;
     justify-content: space-around;
-    padding: 0 40px;
+    padding: 0 30px;
 }
 
 .remote-btn {
@@ -229,10 +249,10 @@ body {
     flex-direction: column;
     align-items: center;
     gap: 4px;
-    padding: 12px 24px;
+    padding: 12px 20px;
     background: var(--bg-tertiary);
     border: 1px solid #444;
-    border-radius: 24px;
+    border-radius: 20px;
     color: var(--text-primary);
     cursor: pointer;
     transition: all 0.2s ease;
@@ -240,13 +260,13 @@ body {
 }
 
 .remote-btn svg {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     fill: currentColor;
 }
 
 .remote-btn span {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
 }
 
@@ -255,70 +275,160 @@ body {
     background: var(--accent);
 }
 
-.volume-channel {
+.bottom-controls {
     display: flex;
     justify-content: space-between;
-    padding: 0 20px;
+    align-items: center;
+    padding: 0 10px;
 }
 
-.volume-group, .channel-group {
+.channel-group {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    align-items: center;
+    gap: 12px;
 }
 
-.vol-ch-btn {
-    padding: 14px 28px;
+.bottom-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
     background: var(--bg-tertiary);
     border: 1px solid #444;
-    border-radius: 20px;
     color: var(--text-primary);
-    font-weight: bold;
-    font-size: 13px;
     cursor: pointer;
     transition: all 0.2s ease;
     box-shadow: var(--button-shadow);
-}
-
-.vol-ch-btn.mute {
-    padding: 12px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 2px;
 }
 
-.vol-ch-btn.mute svg {
-    width: 20px;
-    height: 20px;
+.bottom-btn svg {
+    width: 18px;
+    height: 18px;
     fill: currentColor;
 }
 
-.vol-ch-btn:active {
-    transform: scale(0.95);
+.bottom-btn span {
+    font-size: 9px;
+    font-weight: bold;
+}
+
+.bottom-btn:active {
     background: var(--accent);
+    transform: scale(0.95);
+}
+
+.ch-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60px;
+}
+
+.ch-number {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--accent);
 }
 
 .ch-label {
-    text-align: center;
-    font-size: 11px;
+    font-size: 9px;
     color: var(--text-secondary);
     font-weight: 600;
     letter-spacing: 1px;
 }
 
-.content-container {
+.menu-controls {
+    display: flex;
+    gap: 12px;
+}
+
+.menu-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 12px;
+    background: var(--bg-tertiary);
+    border: 1px solid #444;
+    border-radius: 12px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: var(--button-shadow);
+}
+
+.menu-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+.menu-btn span {
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.menu-btn:active {
+    background: var(--accent);
+    transform: scale(0.95);
+}
+
+.play-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.sub-nav {
+    display: flex;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid #333;
+    padding: 0 8px;
+}
+
+.sub-tab-btn {
+    flex: 1;
+    padding: 12px 8px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 8px 8px 0 0;
+}
+
+.sub-tab-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+.sub-tab-btn.active {
+    color: var(--accent);
+    background: rgba(0, 168, 225, 0.1);
+    border-bottom: 2px solid var(--accent);
+}
+
+.sub-content {
+    display: none;
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     padding: 20px;
 }
 
-.content-section {
-    margin-bottom: 32px;
-}
-
-.content-section h2 {
-    font-size: 20px;
-    margin-bottom: 16px;
-    color: var(--text-primary);
-    font-weight: 600;
+.sub-content.active {
+    display: block;
 }
 
 .favorites-list, .channel-list {
@@ -351,24 +461,72 @@ body {
 }
 
 .channel-card {
+    padding: 12px 16px;
+}
+
+.channel-info {
+    flex: 1;
     display: flex;
-    align-items: center;
-    gap: 16px;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.channel-name {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.channel-desc {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.channel-number {
+    font-weight: bold;
+    color: var(--accent);
+    font-size: 14px;
+    min-width: 40px;
+    text-align: right;
 }
 
 .channel-logo {
     width: 48px;
     height: 48px;
-    background: var(--bg-tertiary);
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: 14px;
-    color: var(--accent);
+    font-size: 12px;
+    color: white;
     border: 1px solid #444;
 }
+
+.abc-logo { background: linear-gradient(45deg, #000, #333); color: #FFD700; }
+.cbs-logo { background: linear-gradient(45deg, #003f7f, #0066cc); }
+.nbc-logo { background: linear-gradient(45deg, #000, #333); color: #FFD700; }
+.fox-logo { background: linear-gradient(45deg, #003366, #0066cc); }
+.cnn-logo { background: linear-gradient(45deg, #cc0000, #ff0000); }
+.espn-logo { background: linear-gradient(45deg, #ffcc00, #ff9900); color: #000; }
+.espn2-logo { background: linear-gradient(45deg, #ff6600, #ff3300); }
+.fs1-logo { background: linear-gradient(45deg, #000033, #000066); }
+.msnbc-logo { background: linear-gradient(45deg, #0066cc, #0080ff); }
+.cc-logo { background: linear-gradient(45deg, #ffcc00, #ff9900); color: #000; }
+.disc-logo { background: linear-gradient(45deg, #003366, #0066cc); }
+.hist-logo { background: linear-gradient(45deg, #996600, #cc8800); }
+.natgeo-logo { background: linear-gradient(45deg, #ffcc00, #ff9900); color: #000; }
+.food-logo { background: linear-gradient(45deg, #cc6600, #ff8800); }
+.hgtv-logo { background: linear-gradient(45deg, #006633, #009944); }
+.tnt-logo { background: linear-gradient(45deg, #000, #333); color: #FFD700; }
+.tbs-logo { background: linear-gradient(45deg, #003366, #0066cc); }
+.usa-logo { background: linear-gradient(45deg, #000066, #0033cc); }
+.fx-logo { background: linear-gradient(45deg, #000, #333); color: #FFD700; }
+.syfy-logo { background: linear-gradient(45deg, #6600cc, #9933ff); }
+.weather-logo { background: linear-gradient(45deg, #0066cc, #0080ff); }
+.mtv-logo { background: linear-gradient(45deg, #ffcc00, #ff9900); color: #000; }
+.vh1-logo { background: linear-gradient(45deg, #ff6600, #ff3300); }
+.bravo-logo { background: linear-gradient(45deg, #660066, #990099); }
+.ae-logo { background: linear-gradient(45deg, #000, #333); color: #FFD700; }
 
 .apps-grid {
     display: grid;
@@ -414,6 +572,16 @@ body {
     border: 1px solid #444;
 }
 .paramount-icon { background: #0064ff; }
+.apple-icon { 
+    background: linear-gradient(135deg, #000, #333);
+    font-size: 28px;
+}
+.spotify-icon { 
+    background: #1db954;
+    font-size: 28px;
+}
+.twitch-icon { background: #9146ff; }
+.plex-icon { background: #e5a00d; color: #000; }
 
 .toast {
     position: fixed;
