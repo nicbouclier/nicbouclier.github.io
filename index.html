@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a1a1a">
+    <title>Xumo Remote PWA</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+    <div class="app">
+        <nav class="tab-nav">
+            <button class="tab-btn active" data-tab="remote">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 14.5c-2.49 0-4.5-2.01-4.5-4.5S9.51 7.5 12 7.5s4.5 2.01 4.5 4.5-2.01 4.5-4.5 4.5zm0-5.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"/></svg>
+                Remote
+            </button>
+            <button class="tab-btn" data-tab="content">
+                <svg viewBox="0 0 24 24"><path d="M4 6h16v2H4zm2 5h12v2H6zm-2 5h16v2H4z"/></svg>
+                Content
+            </button>
+        </nav>
+
+        <div class="tab-content active" id="remote">
+            <div class="remote-container">
+                <div class="power-row">
+                    <button class="remote-btn power-btn" data-action="power">
+                        <svg viewBox="0 0 24 24"><path d="M13 3h-2v10h2V3zm4.83 2.17l-1.42 1.42A6.92 6.92 0 0119 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.03.87-3.87 2.59-5.41L6.17 5.17A8.932 8.932 0 003 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.63-1.13-5-2.17-6.83z"/></svg>
+                    </button>
+                </div>
+
+                <div class="streaming-services">
+                    <button class="service-btn netflix" data-action="netflix">NETFLIX</button>
+                    <button class="service-btn prime" data-action="prime">prime</button>
+                    <button class="service-btn disney" data-action="disney">Disney+</button>
+                    <button class="service-btn peacock" data-action="peacock">peacock</button>
+                </div>
+
+                <div class="nav-pad">
+                    <button class="nav-btn up" data-action="up">
+                        <svg viewBox="0 0 24 24"><path d="M7 14l5-5 5 5z"/></svg>
+                    </button>
+                    <button class="nav-btn left" data-action="left">
+                        <svg viewBox="0 0 24 24"><path d="M15 7l-5 5 5 5z"/></svg>
+                    </button>
+                    <button class="nav-btn ok" data-action="ok">OK</button>
+                    <button class="nav-btn right" data-action="right">
+                        <svg viewBox="0 0 24 24"><path d="M9 7l5 5-5 5z"/></svg>
+                    </button>
+                    <button class="nav-btn down" data-action="down">
+                        <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                    </button>
+                </div>
+
+                <div class="control-row">
+                    <button class="remote-btn back" data-action="back">
+                        <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+                        <span>Back</span>
+                    </button>
+                    <button class="remote-btn home" data-action="home">
+                        <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                        <span>Home</span>
+                    </button>
+                </div>
+
+                <div class="volume-channel">
+                    <div class="volume-group">
+                        <button class="vol-ch-btn" data-action="vol-up">VOL +</button>
+                        <button class="vol-ch-btn mute" data-action="mute">
+                            <svg viewBox="0 0 24 24"><path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                        </button>
+                        <button class="vol-ch-btn" data-action="vol-down">VOL -</button>
+                    </div>
+                    <div class="channel-group">
+                        <button class="vol-ch-btn" data-action="ch-up">CH +</button>
+                        <div class="ch-label">CHANNEL</div>
+                        <button class="vol-ch-btn" data-action="ch-down">CH -</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="content">
+            <div class="content-container">
+                <section class="content-section">
+                    <h2>Favorites</h2>
+                    <div class="favorites-list">
+                        <div class="content-card" data-item="The Office">
+                            <div class="card-icon">📺</div>
+                            <span>The Office</span>
+                        </div>
+                        <div class="content-card" data-item="Netflix App">
+                            <div class="card-icon">🎬</div>
+                            <span>Netflix</span>
+                        </div>
+                        <div class="content-card" data-item="CNN Live">
+                            <div class="card-icon">📡</div>
+                            <span>CNN Live</span>
+                        </div>
+                        <div class="content-card" data-item="Breaking Bad">
+                            <div class="card-icon">📺</div>
+                            <span>Breaking Bad</span>
+                        </div>
+                        <div class="content-card" data-item="HBO Max">
+                            <div class="card-icon">🎬</div>
+                            <span>HBO Max</span>
+                        </div>
+                        <div class="content-card" data-item="ESPN">
+                            <div class="card-icon">📡</div>
+                            <span>ESPN</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2>Live Channels</h2>
+                    <div class="channel-list">
+                        <div class="content-card channel-card" data-item="ABC">
+                            <div class="channel-logo">ABC</div>
+                            <span>ABC News Live</span>
+                        </div>
+                        <div class="content-card channel-card" data-item="CBS">
+                            <div class="channel-logo">CBS</div>
+                            <span>CBS News</span>
+                        </div>
+                        <div class="content-card channel-card" data-item="NBC">
+                            <div class="channel-logo">NBC</div>
+                            <span>NBC News Now</span>
+                        </div>
+                        <div class="content-card channel-card" data-item="FOX">
+                            <div class="channel-logo">FOX</div>
+                            <span>FOX News</span>
+                        </div>
+                        <div class="content-card channel-card" data-item="CNN">
+                            <div class="channel-logo">CNN</div>
+                            <span>CNN International</span>
+                        </div>
+                        <div class="content-card channel-card" data-item="ESPN">
+                            <div class="channel-logo">ESPN</div>
+                            <span>ESPN Live</span>
+                        </div>
+                        <div class="content-card channel-card" data-item="Comedy">
+                            <div class="channel-logo">CC</div>
+                            <span>Comedy Central</span>
+                        </div>
+                        <div class="content-card channel-card" data-item="Weather">
+                            <div class="channel-logo">WX</div>
+                            <span>Weather Channel</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="content-section">
+                    <h2>Apps</h2>
+                    <div class="apps-grid">
+                        <div class="content-card app-card" data-item="Netflix">
+                            <div class="app-icon netflix-icon">N</div>
+                            <span>Netflix</span>
+                        </div>
+                        <div class="content-card app-card" data-item="Prime Video">
+                            <div class="app-icon prime-icon">P</div>
+                            <span>Prime Video</span>
+                        </div>
+                        <div class="content-card app-card" data-item="Disney+">
+                            <div class="app-icon disney-icon">D+</div>
+                            <span>Disney+</span>
+                        </div>
+                        <div class="content-card app-card" data-item="Hulu">
+                            <div class="app-icon hulu-icon">H</div>
+                            <span>Hulu</span>
+                        </div>
+                        <div class="content-card app-card" data-item="HBO Max">
+                            <div class="app-icon hbo-icon">HBO</div>
+                            <span>HBO Max</span>
+                        </div>
+                        <div class="content-card app-card" data-item="YouTube">
+                            <div class="app-icon youtube-icon">YT</div>
+                            <span>YouTube</span>
+                        </div>
+                        <div class="content-card app-card" data-item="Peacock">
+                            <div class="app-icon peacock-icon">P</div>
+                            <span>Peacock</span>
+                        </div>
+                        <div class="content-card app-card" data-item="Paramount+">
+                            <div class="app-icon paramount-icon">P+</div>
+                            <span>Paramount+</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <div class="toast" id="toast"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
