@@ -1,4 +1,4 @@
-const CACHE_NAME = 'xumo-remote-v1';
+const CACHE_NAME = 'xumo-remote-v2';
 const urlsToCache = [
   '/',
   '/index.html',
