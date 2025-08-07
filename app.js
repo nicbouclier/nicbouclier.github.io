@@ -3,9 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabContents = document.querySelectorAll('.tab-content');
     const subTabButtons = document.querySelectorAll('.sub-tab-btn');
     const subContents = document.querySelectorAll('.sub-content');
-    const toast = document.getElementById('toast');
-    let toastTimeout;
-
+    
+    // Tab navigation
     tabButtons.forEach(button => {
         button.addEventListener('click', () => {
             const targetTab = button.dataset.tab;
@@ -20,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
+    // Sub-tab navigation
     subTabButtons.forEach(button => {
         button.addEventListener('click', () => {
             const targetSubTab = button.dataset.subtab;
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-
+    // Enhanced button press feedback
     function handleButtonPress(action, button) {
         navigator.vibrate && navigator.vibrate(15);
         
@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 150);
     }
 
+    // Remote control buttons
     document.querySelectorAll('[data-action]').forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
@@ -67,10 +68,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    document.querySelectorAll('.content-card').forEach(card => {
+    // Content cards
+    document.querySelectorAll('.content-card, .channel-tile, .app-tile').forEach(card => {
         card.addEventListener('click', () => {
             navigator.vibrate && navigator.vibrate(10);
-            // Enhanced visual feedback for content cards
             card.classList.add('selected');
             setTimeout(() => {
                 card.classList.remove('selected');
@@ -78,6 +79,100 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Touchpad swipe gestures (Apple TV style)
+    const touchpad = document.getElementById('touchpad');
+    if (touchpad) {
+        let startX = 0;
+        let startY = 0;
+        let isSwiping = false;
+
+        touchpad.addEventListener('touchstart', (e) => {
+            const touch = e.touches[0];
+            startX = touch.clientX;
+            startY = touch.clientY;
+            isSwiping = true;
+            
+            // Visual feedback
+            const rect = touchpad.getBoundingClientRect();
+            const x = ((touch.clientX - rect.left) / rect.width) * 100;
+            const y = ((touch.clientY - rect.top) / rect.height) * 100;
+            touchpad.style.setProperty('--touch-x', `${x}%`);
+            touchpad.style.setProperty('--touch-y', `${y}%`);
+            touchpad.classList.add('swiping');
+        }, { passive: false });
+
+        touchpad.addEventListener('touchmove', (e) => {
+            if (!isSwiping) return;
+            e.preventDefault();
+            
+            const touch = e.touches[0];
+            const rect = touchpad.getBoundingClientRect();
+            const x = ((touch.clientX - rect.left) / rect.width) * 100;
+            const y = ((touch.clientY - rect.top) / rect.height) * 100;
+            touchpad.style.setProperty('--touch-x', `${x}%`);
+            touchpad.style.setProperty('--touch-y', `${y}%`);
+        }, { passive: false });
+
+        touchpad.addEventListener('touchend', (e) => {
+            if (!isSwiping) return;
+            
+            const touch = e.changedTouches[0];
+            const deltaX = touch.clientX - startX;
+            const deltaY = touch.clientY - startY;
+            const threshold = 50;
+
+            // Determine swipe direction
+            if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                if (deltaX > threshold) {
+                    console.log('Swipe Right');
+                    navigator.vibrate && navigator.vibrate(10);
+                } else if (deltaX < -threshold) {
+                    console.log('Swipe Left');
+                    navigator.vibrate && navigator.vibrate(10);
+                }
+            } else {
+                if (deltaY > threshold) {
+                    console.log('Swipe Down');
+                    navigator.vibrate && navigator.vibrate(10);
+                } else if (deltaY < -threshold) {
+                    console.log('Swipe Up');
+                    navigator.vibrate && navigator.vibrate(10);
+                }
+            }
+
+            touchpad.classList.remove('swiping');
+            isSwiping = false;
+        });
+
+        // Click on touchpad edge areas
+        touchpad.addEventListener('click', (e) => {
+            const rect = touchpad.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const edgeThreshold = 60;
+
+            // Skip if clicking the center button
+            if (e.target.classList.contains('touchpad-center')) return;
+
+            if (x < edgeThreshold) {
+                console.log('Navigate Left');
+                navigator.vibrate && navigator.vibrate(10);
+            } else if (x > rect.width - edgeThreshold) {
+                console.log('Navigate Right');
+                navigator.vibrate && navigator.vibrate(10);
+            } else if (y < edgeThreshold) {
+                console.log('Navigate Up');
+                navigator.vibrate && navigator.vibrate(10);
+            } else if (y > rect.height - edgeThreshold) {
+                console.log('Navigate Down');
+                navigator.vibrate && navigator.vibrate(10);
+            }
+        });
+    }
+
+    // Service Worker Registration
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('/service-worker.js')
@@ -86,13 +181,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // PWA install prompt
     let deferredPrompt;
     window.addEventListener('beforeinstallprompt', (e) => {
         e.preventDefault();
         deferredPrompt = e;
     });
 
-
+    // Prevent double-tap zoom
     const preventZoom = (e) => {
         if (e.touches.length > 1) {
             e.preventDefault();
@@ -110,10 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lastTouchEnd = now;
     }, false);
 
-    if (window.matchMedia('(display-mode: standalone)').matches) {
-        console.log('Running as PWA');
-    }
-
+    // Viewport height fix for mobile
     const appHeight = () => {
         const doc = document.documentElement;
         doc.style.setProperty('--app-height', `${window.innerHeight}px`);
