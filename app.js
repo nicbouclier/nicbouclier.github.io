@@ -34,52 +34,47 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    function showToast(message) {
-        clearTimeout(toastTimeout);
-        toast.textContent = message;
-        toast.classList.add('show');
-        
-        toastTimeout = setTimeout(() => {
-            toast.classList.remove('show');
-        }, 2000);
-    }
 
-    function handleButtonPress(action) {
+    function handleButtonPress(action, button) {
         navigator.vibrate && navigator.vibrate(15);
         
-        const messages = {
-            'power': 'Power button pressed',
-            'up': 'Navigate Up',
-            'down': 'Navigate Down',
-            'left': 'Navigate Left',
-            'right': 'Navigate Right',
-            'ok': 'OK / Select',
-            'back': 'Going Back',
-            'home': 'Going Home',
-            'vol-up': 'Volume Up',
-            'vol-down': 'Volume Down',
-            'mute': 'Mute Toggle',
-            'ch-up': 'Channel Up',
-            'ch-down': 'Channel Down',
-            'menu': 'Menu opened',
-            'guide': 'Guide opened'
-        };
-        
-        showToast(messages[action] || `${action} pressed`);
+        // Enhanced visual feedback
+        button.classList.add('pressed');
+        setTimeout(() => {
+            button.classList.remove('pressed');
+        }, 150);
     }
 
     document.querySelectorAll('[data-action]').forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
-            handleButtonPress(button.dataset.action);
+            handleButtonPress(button.dataset.action, button);
+        });
+        
+        // Enhanced touch feedback
+        button.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            button.classList.add('touch-down');
+        }, { passive: false });
+        
+        button.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            button.classList.remove('touch-down');
+        }, { passive: false });
+        
+        button.addEventListener('touchcancel', (e) => {
+            button.classList.remove('touch-down');
         });
     });
 
     document.querySelectorAll('.content-card').forEach(card => {
         card.addEventListener('click', () => {
-            const itemName = card.dataset.item || card.querySelector('span').textContent;
-            showToast(`${itemName} selected`);
             navigator.vibrate && navigator.vibrate(10);
+            // Enhanced visual feedback for content cards
+            card.classList.add('selected');
+            setTimeout(() => {
+                card.classList.remove('selected');
+            }, 200);
         });
     });
 
@@ -97,19 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
         deferredPrompt = e;
     });
 
-    document.addEventListener('touchstart', (e) => {
-        if (e.target.closest('button') || e.target.closest('.content-card')) {
-            e.target.style.transform = 'scale(0.95)';
-        }
-    });
-
-    document.addEventListener('touchend', (e) => {
-        if (e.target.closest('button') || e.target.closest('.content-card')) {
-            setTimeout(() => {
-                e.target.style.transform = '';
-            }, 100);
-        }
-    });
 
     const preventZoom = (e) => {
         if (e.touches.length > 1) {

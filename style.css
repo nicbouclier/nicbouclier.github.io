@@ -124,9 +124,12 @@ body {
     box-shadow: var(--button-shadow);
 }
 
-.power-btn:active {
-    transform: scale(0.95);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+.power-btn:active,
+.power-btn.touch-down,
+.power-btn.pressed {
+    transform: scale(0.92);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 2px 4px rgba(0,0,0,0.3);
+    background: linear-gradient(145deg, #b00610, #900510);
 }
 
 .power-btn svg {
@@ -187,9 +190,20 @@ body {
     fill: currentColor;
 }
 
-.nav-btn:active {
-    transform: scale(0.95);
+.nav-btn:active,
+.nav-btn.touch-down,
+.nav-btn.pressed {
+    transform: scale(0.92);
     background: var(--accent);
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.4), 0 2px 4px rgba(0,168,225,0.3);
+    border-color: #00d4ff;
+}
+
+.nav-btn.ok:active,
+.nav-btn.ok.touch-down,
+.nav-btn.ok.pressed {
+    background: #0080b3;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.4), 0 2px 4px rgba(0,168,225,0.5);
 }
 
 .side-controls {
@@ -229,9 +243,13 @@ body {
     fill: currentColor;
 }
 
-.side-btn:active {
+.side-btn:active,
+.side-btn.touch-down,
+.side-btn.pressed {
     background: var(--accent);
-    transform: scale(0.95);
+    transform: scale(0.92) translateX(-2px);
+    box-shadow: inset -2px 0 6px rgba(0,0,0,0.3), 2px 0 8px rgba(0,168,225,0.2);
+    border-color: #00d4ff;
 }
 
 .mute-side {
@@ -270,9 +288,13 @@ body {
     font-weight: 600;
 }
 
-.remote-btn:active {
-    transform: scale(0.95);
+.remote-btn:active,
+.remote-btn.touch-down,
+.remote-btn.pressed {
+    transform: scale(0.92);
     background: var(--accent);
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.3), 0 2px 8px rgba(0,168,225,0.2);
+    border-color: #00d4ff;
 }
 
 .bottom-controls {
@@ -316,9 +338,13 @@ body {
     font-weight: bold;
 }
 
-.bottom-btn:active {
+.bottom-btn:active,
+.bottom-btn.touch-down,
+.bottom-btn.pressed {
     background: var(--accent);
-    transform: scale(0.95);
+    transform: scale(0.92);
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.3), 0 2px 8px rgba(0,168,225,0.2);
+    border-color: #00d4ff;
 }
 
 .ch-display {
@@ -372,9 +398,13 @@ body {
     font-weight: 600;
 }
 
-.menu-btn:active {
+.menu-btn:active,
+.menu-btn.touch-down,
+.menu-btn.pressed {
     background: var(--accent);
-    transform: scale(0.95);
+    transform: scale(0.92);
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.3), 0 2px 8px rgba(0,168,225,0.2);
+    border-color: #00d4ff;
 }
 
 .play-container {
@@ -450,10 +480,12 @@ body {
     border: 1px solid transparent;
 }
 
-.content-card:active {
-    transform: scale(0.98);
+.content-card:active,
+.content-card.selected {
+    transform: scale(0.96);
     background: var(--bg-tertiary);
     border-color: var(--accent);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4), inset 0 0 20px rgba(0,168,225,0.1);
 }
 
 .card-icon {
@@ -583,25 +615,43 @@ body {
 .twitch-icon { background: #9146ff; }
 .plex-icon { background: #e5a00d; color: #000; }
 
-.toast {
-    position: fixed;
-    bottom: 80px;
-    left: 50%;
-    transform: translateX(-50%) translateY(100px);
-    background: var(--bg-tertiary);
-    color: var(--text-primary);
-    padding: 12px 24px;
-    border-radius: 24px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    opacity: 0;
-    transition: all 0.3s ease;
-    z-index: 1000;
-    border: 1px solid var(--accent);
+/* Enhanced button touch feedback */
+.nav-btn, .power-btn, .side-btn, .remote-btn, .bottom-btn, .menu-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.toast.show {
-    transform: translateX(-50%) translateY(0);
+.nav-btn::before, .power-btn::before, .side-btn::before, 
+.remote-btn::before, .bottom-btn::before, .menu-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    z-index: 1;
+}
+
+.nav-btn.pressed::before, .power-btn.pressed::before, .side-btn.pressed::before,
+.remote-btn.pressed::before, .bottom-btn.pressed::before, .menu-btn.pressed::before {
+    width: 100px;
+    height: 100px;
     opacity: 1;
+}
+
+/* Button glow on touch */
+.nav-btn.touch-down, .power-btn.touch-down, .side-btn.touch-down,
+.remote-btn.touch-down, .bottom-btn.touch-down, .menu-btn.touch-down {
+    box-shadow: 
+        var(--button-shadow),
+        0 0 20px rgba(0, 168, 225, 0.4),
+        inset 0 2px 8px rgba(0,0,0,0.3);
 }
 
 @media (min-width: 768px) {
