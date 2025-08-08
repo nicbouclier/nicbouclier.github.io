@@ -27,33 +27,34 @@ body {
     display: flex;
     flex-direction: column;
     height: var(--app-height);
-    max-width: 500px;
+    max-width: 390px;
     margin: 0 auto;
     background: var(--bg-primary);
 }
 
-/* Top Bar - Exact Specifications */
+/* Top Bar - Better Proportions */
 .tab-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 16px;
+    padding: 16px 20px;
     background: var(--bg-primary);
+    min-height: 60px;
 }
 
 .tab-pills {
     display: flex;
-    gap: 8px;
+    gap: 12px;
 }
 
 .tab-pill {
-    height: 40px;
-    padding: 0 20px;
-    border-radius: 20px;
+    height: 36px;
+    padding: 0 18px;
+    border-radius: 18px;
     border: none;
     background: transparent;
     color: var(--text-primary);
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -68,9 +69,9 @@ body {
 }
 
 .power-btn-nav {
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
     background: #d32f2f;
     border: none;
     color: white;
@@ -82,14 +83,14 @@ body {
 }
 
 .power-btn-nav svg {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     stroke: currentColor;
     fill: none;
 }
 
 .power-btn-nav:active {
-    transform: scale(0.92);
+    transform: scale(0.9);
     box-shadow: 0 0 0 3px var(--accent);
 }
 
@@ -106,41 +107,41 @@ body {
     flex-direction: column;
 }
 
-/* Remote Container */
+/* Remote Container - Proper Proportions */
 .remote-container {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     position: relative;
-    padding: 16px;
+    padding: 20px;
+    justify-content: space-between;
+    min-height: 0;
 }
 
-/* Center D-Pad Navigation - Exact Layout */
+/* Center D-Pad Navigation - Better Size */
 .nav-section {
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 32px 0;
 }
 
 .dpad-container {
     position: relative;
-    width: 160px;
-    height: 160px;
+    width: 200px;
+    height: 200px;
     display: grid;
-    grid-template-columns: 48px 64px 48px;
-    grid-template-rows: 48px 64px 48px;
-    gap: 12px;
+    grid-template-columns: 60px 80px 60px;
+    grid-template-rows: 60px 80px 60px;
+    gap: 10px;
     align-items: center;
     justify-items: center;
 }
 
 .dpad-btn {
-    width: 48px;
-    height: 48px;
-    border-radius: 24px;
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
     background: var(--bg-button);
     border: none;
     color: var(--text-primary);
@@ -152,9 +153,10 @@ body {
 }
 
 .dpad-btn svg {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     stroke: currentColor;
+    stroke-width: 2.5;
     fill: none;
 }
 
@@ -176,14 +178,14 @@ body {
 .dpad-ok {
     grid-column: 2;
     grid-row: 2;
-    width: 56px;
-    height: 56px;
-    border-radius: 28px;
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
     background: var(--bg-button);
     border: none;
     color: var(--text-primary);
     font-weight: 600;
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
     transition: all 0.15s ease;
     display: flex;
@@ -206,28 +208,29 @@ body {
     grid-row: 3;
 }
 
-/* Left-Side Volume Control Pill - Exact Specifications */
+/* Left-Side Volume Control - Better Positioning */
 .volume-container {
     position: absolute;
-    left: -8px;
+    left: -16px;
     top: 50%;
     transform: translateY(-50%);
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
     z-index: 10;
 }
 
 .volume-pill {
-    width: 48px;
-    height: 160px;
+    width: 52px;
+    height: 140px;
     background: var(--bg-button);
-    border-radius: 24px;
+    border-radius: 26px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding: 6px 0;
+    padding: 8px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
 .volume-btn {
@@ -245,9 +248,10 @@ body {
 }
 
 .volume-btn svg {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     stroke: currentColor;
+    stroke-width: 2.5;
     fill: none;
 }
 
@@ -262,21 +266,21 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.5);
     pointer-events: none;
 }
 
 .volume-speaker svg {
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
     stroke: currentColor;
     fill: none;
 }
 
 .mute-btn {
-    width: 32px;
-    height: 32px;
-    border-radius: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
     background: var(--bg-button);
     border: none;
     color: var(--text-primary);
@@ -285,11 +289,12 @@ body {
     justify-content: center;
     cursor: pointer;
     transition: all 0.15s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
 .mute-btn svg {
-    width: 14px;
-    height: 14px;
+    width: 16px;
+    height: 16px;
     stroke: currentColor;
     fill: none;
 }
@@ -299,20 +304,20 @@ body {
     box-shadow: 0 0 0 3px var(--accent);
 }
 
-/* Bottom Action Row - Exact Specifications */
+/* Bottom Action Row - Better Spacing */
 .bottom-actions {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 24px;
-    margin-top: 32px;
-    padding-bottom: 16px;
+    gap: 32px;
+    padding: 20px 0;
+    margin-top: auto;
 }
 
 .action-btn {
-    width: 48px;
-    height: 48px;
-    border-radius: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 28px;
     background: var(--bg-button);
     border: none;
     color: var(--text-primary);
@@ -321,12 +326,14 @@ body {
     justify-content: center;
     cursor: pointer;
     transition: all 0.15s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 .action-btn svg {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     stroke: currentColor;
+    stroke-width: 2;
     fill: none;
 }
 
@@ -346,17 +353,17 @@ body {
 .sub-nav {
     display: flex;
     background: var(--bg-primary);
-    padding: 16px;
+    padding: 16px 20px;
     gap: 8px;
 }
 
 .sub-tab-btn {
     flex: 1;
-    padding: 10px;
+    padding: 10px 12px;
     background: transparent;
     border: none;
     color: rgba(255, 255, 255, 0.6);
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
     display: flex;
     align-items: center;
@@ -365,12 +372,12 @@ body {
     cursor: pointer;
     transition: all 0.2s ease;
     border-radius: 12px;
-    height: 44px;
+    height: 40px;
 }
 
 .sub-tab-btn svg {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     fill: currentColor;
 }
 
@@ -385,7 +392,7 @@ body {
     flex: 1;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    padding: 16px;
+    padding: 16px 20px;
 }
 
 .sub-content.active {
@@ -405,7 +412,7 @@ body {
     gap: 16px;
     padding: 12px;
     background: var(--bg-button);
-    border-radius: 16px;
+    border-radius: 12px;
     cursor: pointer;
     transition: all 0.15s ease;
     border: 1px solid transparent;
@@ -418,8 +425,8 @@ body {
 
 /* Thumbnails */
 .item-thumbnail {
-    width: 80px;
-    height: 60px;
+    width: 72px;
+    height: 54px;
     border-radius: 8px;
     background-size: cover;
     background-position: center;
@@ -433,7 +440,7 @@ body {
     justify-content: center;
     color: #FF0000;
     font-weight: bold;
-    font-size: 10px;
+    font-size: 9px;
 }
 
 .stranger-things-thumb::after {
@@ -447,7 +454,7 @@ body {
     justify-content: center;
     color: white;
     font-weight: bold;
-    font-size: 8px;
+    font-size: 7px;
 }
 
 .office-thumb::after {
@@ -461,7 +468,7 @@ body {
     justify-content: center;
     color: #228B22;
     font-weight: bold;
-    font-size: 10px;
+    font-size: 9px;
 }
 
 .bb-thumb::after {
@@ -475,7 +482,7 @@ body {
     justify-content: center;
     color: #000;
     font-weight: bold;
-    font-size: 10px;
+    font-size: 9px;
 }
 
 .ted-thumb::after {
@@ -489,7 +496,7 @@ body {
     justify-content: center;
     color: white;
     font-weight: bold;
-    font-size: 10px;
+    font-size: 9px;
 }
 
 .cnn-thumb::after {
@@ -503,7 +510,7 @@ body {
     justify-content: center;
     color: white;
     font-weight: bold;
-    font-size: 10px;
+    font-size: 9px;
 }
 
 .wednesday-thumb::after {
@@ -520,7 +527,7 @@ body {
 .item-title {
     font-weight: 500;
     color: var(--text-primary);
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.2;
 }
 
@@ -550,14 +557,14 @@ body {
 
 /* Channel and App Logos */
 .channel-logo, .app-logo {
-    width: 60px;
-    height: 60px;
-    border-radius: 12px;
+    width: 54px;
+    height: 54px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 600;
-    font-size: 12px;
+    font-size: 11px;
     color: white;
     flex-shrink: 0;
 }
@@ -565,7 +572,7 @@ body {
 /* Channel Styles */
 .abc-logo { background: linear-gradient(45deg, #000, #333); color: #FFD700; }
 .cbs-logo { background: linear-gradient(45deg, #003f7f, #0066cc); }
-.nbc-logo { background: linear-gradient(135deg, #f37021, #fcb711, #00a651, #0085c7); font-size: 11px; }
+.nbc-logo { background: linear-gradient(135deg, #f37021, #fcb711, #00a651, #0085c7); font-size: 10px; }
 .fox-logo { background: linear-gradient(45deg, #003366, #0066cc); }
 .cnn-logo { background: linear-gradient(45deg, #cc0000, #ff0000); }
 .espn-logo { background: linear-gradient(45deg, #ff0000, #ff3333); }
@@ -577,67 +584,79 @@ body {
 .hist-logo { background: linear-gradient(45deg, #996600, #cc8800); }
 
 /* App Styles */
-.netflix-logo { background: #E50914; font-size: 10px; }
-.prime-logo { background: #00A8E1; font-size: 9px; }
-.disney-logo { background: #113CCF; font-size: 11px; }
-.hulu-logo { background: #3DBB3D; font-size: 11px; }
-.hbo-logo { background: linear-gradient(135deg, #7c3aed, #a855f7); font-size: 12px; }
+.netflix-logo { background: #E50914; font-size: 9px; }
+.prime-logo { background: #00A8E1; font-size: 8px; }
+.disney-logo { background: #113CCF; font-size: 10px; }
+.hulu-logo { background: #3DBB3D; font-size: 10px; }
+.hbo-logo { background: linear-gradient(135deg, #7c3aed, #a855f7); font-size: 11px; }
 .apple-logo { background: linear-gradient(135deg, #000, #333); }
-.apple-logo svg { width: 24px; height: 24px; fill: white; }
+.apple-logo svg { width: 22px; height: 22px; fill: white; }
 .youtube-logo { background: #FF0000; }
-.youtube-logo svg { width: 28px; height: 28px; fill: white; }
-.peacock-logo { background: linear-gradient(45deg, #000, #333); font-size: 10px; }
-.paramount-logo { background: #0064FF; font-size: 14px; }
-.xumo-logo { background: linear-gradient(45deg, #00a8e1, #0080ff); font-size: 10px; }
+.youtube-logo svg { width: 26px; height: 26px; fill: white; }
+.peacock-logo { background: linear-gradient(45deg, #000, #333); font-size: 9px; }
+.paramount-logo { background: #0064FF; font-size: 13px; }
+.xumo-logo { background: linear-gradient(45deg, #00a8e1, #0080ff); font-size: 9px; }
 
 /* Responsive Design */
-@media (max-width: 480px) {
+@media (max-width: 375px) {
+    .app {
+        max-width: 100%;
+    }
+    
+    .tab-nav {
+        padding: 14px 16px;
+    }
+    
+    .remote-container {
+        padding: 16px;
+    }
+    
     .volume-container {
-        left: -4px;
+        left: -12px;
     }
     
     .volume-pill {
-        width: 44px;
-        height: 140px;
+        width: 48px;
+        height: 120px;
     }
     
     .dpad-container {
-        width: 140px;
-        height: 140px;
-        grid-template-columns: 44px 56px 44px;
-        grid-template-rows: 44px 56px 44px;
+        width: 180px;
+        height: 180px;
+        grid-template-columns: 56px 68px 56px;
+        grid-template-rows: 56px 68px 56px;
     }
     
     .dpad-btn {
-        width: 44px;
-        height: 44px;
-        border-radius: 22px;
+        width: 56px;
+        height: 56px;
+        border-radius: 28px;
     }
     
     .dpad-ok {
+        width: 68px;
+        height: 68px;
+        border-radius: 34px;
+    }
+    
+    .action-btn {
         width: 52px;
         height: 52px;
         border-radius: 26px;
     }
     
-    .action-btn {
-        width: 44px;
-        height: 44px;
-        border-radius: 22px;
+    .bottom-actions {
+        gap: 28px;
     }
 }
 
-@media (max-height: 700px) {
-    .nav-section {
-        margin: 16px 0;
+@media (max-height: 667px) {
+    .volume-pill {
+        height: 110px;
     }
     
     .bottom-actions {
-        margin-top: 16px;
-    }
-    
-    .volume-pill {
-        height: 120px;
+        padding: 16px 0;
     }
 }
 
@@ -648,7 +667,7 @@ body {
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 390px) {
     .app {
         border-left: 1px solid rgba(255, 255, 255, 0.1);
         border-right: 1px solid rgba(255, 255, 255, 0.1);
