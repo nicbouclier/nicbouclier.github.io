@@ -1,0 +1,784 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+    --bg-primary: #000000;
+    --bg-secondary: #1c1c1e;
+    --bg-tertiary: #2c2c2e;
+    --bg-card: #1c1c1e;
+    --text-primary: #ffffff;
+    --text-secondary: #8e8e93;
+    --accent: #007aff;
+    --accent-hover: #0051d5;
+    --border: rgba(255,255,255,0.1);
+    --shadow: 0 4px 12px rgba(0,0,0,0.5);
+    --app-height: 100vh;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    height: var(--app-height);
+    overflow: hidden;
+    user-select: none;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    height: var(--app-height);
+    max-width: 500px;
+    margin: 0 auto;
+    background: var(--bg-primary);
+}
+
+/* Top Navigation */
+.tab-nav {
+    display: flex;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    padding: 8px 16px;
+    min-height: 60px;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 12px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 12px;
+}
+
+.tab-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.tab-btn.active {
+    color: var(--accent);
+    background: rgba(0, 122, 255, 0.15);
+}
+
+.tab-btn:not(.active):hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Tab Content */
+.tab-content {
+    display: none;
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.tab-content.active {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Remote Container - Sleek Design */
+.remote-container {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    max-width: 400px;
+    margin: 0 auto;
+    width: 100%;
+    flex: 1;
+    justify-content: center;
+}
+
+/* Top Row */
+.top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.instant-access-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 12px 16px;
+    background: var(--accent);
+    border: none;
+    border-radius: 16px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    box-shadow: var(--shadow);
+}
+
+.instant-access-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.instant-access-btn span {
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.instant-access-btn:active {
+    transform: scale(0.92);
+    background: var(--accent-hover);
+}
+
+.power-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 12px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #d32f2f, #b71c1c);
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    box-shadow: var(--shadow);
+}
+
+.power-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+.power-btn span {
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.power-btn:active {
+    transform: scale(0.92);
+}
+
+/* Navigation Section */
+.nav-section {
+    display: flex;
+    justify-content: center;
+}
+
+.nav-pad {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 8px;
+    align-items: center;
+    justify-items: center;
+}
+
+.nav-arrow {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.nav-arrow svg {
+    width: 28px;
+    height: 28px;
+    fill: currentColor;
+}
+
+.nav-arrow:active {
+    transform: scale(0.9);
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+.nav-up {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.nav-left {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.nav-ok {
+    grid-column: 2;
+    grid-row: 2;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: var(--bg-tertiary);
+    border: 3px solid var(--accent);
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-ok:active {
+    transform: scale(0.9);
+    background: var(--accent);
+    color: white;
+}
+
+.nav-right {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+.nav-down {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+/* Volume Section */
+.volume-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.volume-btn, .mute-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 12px 10px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    min-width: 60px;
+}
+
+.volume-btn svg, .mute-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.volume-btn span, .mute-btn span {
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.volume-btn:active, .mute-btn:active {
+    transform: scale(0.92);
+    background: var(--accent);
+}
+
+.mute-btn {
+    background: var(--bg-secondary);
+    border-color: var(--accent);
+}
+
+/* Essential Controls */
+.essential-controls {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.control-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 16px 12px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    min-width: 70px;
+}
+
+.control-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+.control-btn span {
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.control-btn:active {
+    transform: scale(0.92);
+    background: var(--accent);
+}
+
+.voice-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 16px 12px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    min-width: 70px;
+}
+
+.voice-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+}
+
+.voice-btn span {
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.voice-btn:active {
+    transform: scale(0.92);
+    background: var(--accent);
+}
+
+/* Play Container */
+.play-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Sub Navigation */
+.sub-nav {
+    display: flex;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border);
+    padding: 8px;
+    gap: 6px;
+}
+
+.sub-tab-btn {
+    flex: 1;
+    padding: 10px 8px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+}
+
+.sub-tab-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+.sub-tab-btn.active {
+    color: var(--accent);
+    background: rgba(0, 122, 255, 0.15);
+}
+
+/* Sub Content */
+.sub-content {
+    display: none;
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 16px;
+}
+
+.sub-content.active {
+    display: block;
+}
+
+/* Content List Items */
+.content-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.content-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px;
+    background: var(--bg-card);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    border: 1px solid transparent;
+}
+
+.content-item:active {
+    transform: scale(0.98);
+    background: var(--bg-tertiary);
+    border-color: var(--accent);
+}
+
+/* Thumbnails for Favorites */
+.item-thumbnail {
+    width: 80px;
+    height: 60px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    flex-shrink: 0;
+}
+
+.stranger-things-thumb {
+    background: linear-gradient(135deg, #000, #8B0000, #FF0000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FF0000;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+.stranger-things-thumb::after {
+    content: "ST";
+}
+
+.office-thumb {
+    background: linear-gradient(135deg, #0066CC, #87CEEB);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 9px;
+}
+
+.office-thumb::after {
+    content: "THE OFFICE";
+}
+
+.bb-thumb {
+    background: linear-gradient(135deg, #228B22, #000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #228B22;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+.bb-thumb::after {
+    content: "BB";
+}
+
+.ted-thumb {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+.ted-thumb::after {
+    content: "TL";
+}
+
+.cnn-thumb {
+    background: linear-gradient(45deg, #CC0000, #FF0000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+.cnn-thumb::after {
+    content: "CNN";
+}
+
+.wednesday-thumb {
+    background: linear-gradient(135deg, #000, #4B0082);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+.wednesday-thumb::after {
+    content: "W";
+}
+
+.item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.item-title {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 15px;
+    line-height: 1.2;
+}
+
+.item-subtitle {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.3;
+}
+
+.item-progress {
+    margin-top: 4px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 3px;
+    background: var(--bg-tertiary);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+}
+
+/* Channel and App Logos */
+.channel-logo, .app-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 12px;
+    color: white;
+    flex-shrink: 0;
+}
+
+.app-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+}
+
+/* Channel Specific Styles */
+.abc-logo { background: linear-gradient(45deg, #000, #333); color: #FFD700; }
+.cbs-logo { background: linear-gradient(45deg, #003f7f, #0066cc); }
+.nbc-logo { 
+    background: linear-gradient(135deg, #f37021, #fcb711, #00a651, #0085c7, #7c3890, #ee1c4e);
+    font-size: 11px;
+}
+.fox-logo { background: linear-gradient(45deg, #003366, #0066cc); }
+.cnn-logo { background: linear-gradient(45deg, #cc0000, #ff0000); }
+.espn-logo { background: linear-gradient(45deg, #ff0000, #ff3333); }
+.msnbc-logo { background: linear-gradient(45deg, #0066cc, #0080ff); }
+.cc-logo { background: linear-gradient(45deg, #ffcc00, #ff9900); color: #000; }
+.hgtv-logo { background: linear-gradient(45deg, #006633, #009944); }
+.food-logo { background: linear-gradient(45deg, #cc6600, #ff8800); }
+.disc-logo { background: linear-gradient(45deg, #003366, #0066cc); }
+.hist-logo { background: linear-gradient(45deg, #996600, #cc8800); }
+
+/* App Specific Styles */
+.netflix-logo { 
+    background: #E50914; 
+    font-size: 10px;
+    letter-spacing: -0.5px;
+}
+
+.prime-logo { 
+    background: #00A8E1;
+    font-size: 9px;
+    text-transform: lowercase;
+}
+
+.disney-logo { 
+    background: #113CCF;
+    font-size: 11px;
+}
+
+.hulu-logo { 
+    background: #3DBB3D;
+    font-size: 11px;
+    text-transform: lowercase;
+}
+
+.hbo-logo { 
+    background: linear-gradient(135deg, #7c3aed, #a855f7); 
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.apple-logo {
+    background: linear-gradient(135deg, #000, #333);
+}
+
+.apple-logo svg {
+    width: 24px;
+    height: 24px;
+    fill: white;
+}
+
+.youtube-logo {
+    background: #FF0000;
+}
+
+.youtube-logo svg {
+    width: 28px;
+    height: 28px;
+    fill: white;
+}
+
+.peacock-logo { 
+    background: linear-gradient(45deg, #000, #333);
+    border: 1px solid #444;
+    font-size: 10px;
+    text-transform: lowercase;
+}
+
+.paramount-logo { 
+    background: #0064FF;
+    font-size: 14px;
+    font-weight: 900;
+}
+
+.xumo-logo { 
+    background: linear-gradient(45deg, #00a8e1, #0080ff);
+    font-size: 10px;
+    font-weight: 900;
+}
+
+/* Enhanced Touch Feedback */
+.power-btn:active,
+.voice-btn:active,
+.control-btn:active,
+.instant-access-btn:active,
+.volume-btn:active,
+.mute-btn:active,
+.nav-arrow:active,
+.nav-ok:active {
+    transform: scale(0.92);
+}
+
+.nav-ok.touch-down,
+.nav-arrow.touch-down,
+.control-btn.touch-down,
+.power-btn.touch-down,
+.voice-btn.touch-down,
+.instant-access-btn.touch-down,
+.volume-btn.touch-down,
+.mute-btn.touch-down {
+    transform: scale(0.95);
+}
+
+.content-item:active,
+.content-item.selected {
+    transform: scale(0.98);
+    background: var(--bg-tertiary);
+    border-color: var(--accent);
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .remote-container {
+        padding: 16px;
+        gap: 28px;
+    }
+    
+    .touchpad {
+        width: 260px;
+        height: 260px;
+    }
+    
+    .essential-controls {
+        padding: 0 10px;
+    }
+    
+    .control-btn {
+        min-width: 65px;
+        padding: 14px 10px;
+    }
+}
+
+@media (max-height: 700px) {
+    .remote-container {
+        gap: 24px;
+        justify-content: flex-start;
+        padding-top: 16px;
+    }
+    
+    .touchpad {
+        width: 240px;
+        height: 240px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .app {
+        border-left: 1px solid var(--border);
+        border-right: 1px solid var(--border);
+    }
+}
